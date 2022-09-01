@@ -6,7 +6,6 @@ part of 'my_note.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-// ignore: non_constant_identifier_names
 _$_MyNote _$$_MyNoteFromJson(Map<String, dynamic> json) => _$_MyNote(
       title: json['title'] as String,
       content: json['content'] as String,
@@ -15,7 +14,6 @@ _$_MyNote _$$_MyNoteFromJson(Map<String, dynamic> json) => _$_MyNote(
       id: json['id'] as int?,
     );
 
-// ignore: non_constant_identifier_names
 Map<String, dynamic> _$$_MyNoteToJson(_$_MyNote instance) => <String, dynamic>{
       'title': instance.title,
       'content': instance.content,

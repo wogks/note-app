@@ -1,10 +1,10 @@
 import 'package:note_app/domain/model/my_note.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-class NoteDb {
+class NoteDbHelper {
   Database db;
 
-  NoteDb(this.db);
+  NoteDbHelper(this.db);
 
   Future<MyNote?> getNoteById(int id) async {
     final List<Map<String, dynamic>> maps = await db.query(
@@ -33,9 +33,15 @@ class NoteDb {
       'note',
       note.toJson(),
       where: 'id = ?',
-      whereArgs: [note.id]
+      whereArgs: [note.id],
     );
   }
 
-  
+  Future<void> deleteNote(MyNote note) async {
+    await db.delete(
+      'note',
+      where: 'id = ?',
+      whereArgs: [note.id],
+    );
+  }
 }

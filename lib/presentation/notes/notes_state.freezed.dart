@@ -91,14 +91,13 @@ class __$$_NoteStateCopyWithImpl<$Res> extends _$NoteStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_NoteState implements _NoteState {
-  const _$_NoteState({final List<MyNote> notes = const []}) : _notes = notes;
+  const _$_NoteState({required final List<MyNote> notes}) : _notes = notes;
 
   factory _$_NoteState.fromJson(Map<String, dynamic> json) =>
       _$$_NoteStateFromJson(json);
 
   final List<MyNote> _notes;
   @override
-  @JsonKey()
   List<MyNote> get notes {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_notes);
@@ -136,7 +135,7 @@ class _$_NoteState implements _NoteState {
 }
 
 abstract class _NoteState implements NoteState {
-  const factory _NoteState({final List<MyNote> notes}) = _$_NoteState;
+  const factory _NoteState({required final List<MyNote> notes}) = _$_NoteState;
 
   factory _NoteState.fromJson(Map<String, dynamic> json) =
       _$_NoteState.fromJson;

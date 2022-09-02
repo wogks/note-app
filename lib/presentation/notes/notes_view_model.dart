@@ -1,15 +1,18 @@
-import 'dart:collection';
+// ignore_for_file: unused_element
+
 
 import 'package:flutter/material.dart';
 import 'package:note_app/domain/model/my_note.dart';
 import 'package:note_app/domain/repository/note_repository.dart';
 import 'package:note_app/presentation/notes/notes_event.dart';
+import 'package:note_app/presentation/notes/notes_state.dart';
 
 class NotesViewModel with ChangeNotifier {
   final NoteRepository repository;
 
-  List<MyNote> _notes = [];
-  UnmodifiableListView<MyNote> get notes => UnmodifiableListView(_notes);
+  NoteState _state = NoteState(notes: []);
+  NoteState get state => _state;
+
 
   MyNote? _recentlyDeletedNote;
 
@@ -25,7 +28,9 @@ class NotesViewModel with ChangeNotifier {
 
   Future<void> _loadNotes() async {
     List<MyNote> notes = await repository.getNotes();
-    _notes = notes;
+    _state = state.copyWith(
+      notes: notes
+    );
     notifyListeners();
   }
 

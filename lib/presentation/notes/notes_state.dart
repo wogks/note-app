@@ -8,7 +8,7 @@ part 'notes_state.g.dart';
 @freezed
 class NoteState with _$NoteState {
   const factory NoteState({
-    @Default([]) List<MyNote> notes,
+    required List<MyNote> notes,
   }) = _NoteState;
 
   factory NoteState.fromJson(Map<String, Object?> json) => _$NoteStateFromJson(json);

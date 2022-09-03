@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/domain/model/my_note.dart';
 import 'package:note_app/domain/repository/note_repository.dart';
 import 'package:note_app/presentation/add_edit_note/add_edit_note_event.dart';
 
@@ -22,5 +23,24 @@ class AddEditNoteViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _saveNote(int? id, String title, String content) async {}
+  Future<void> _saveNote(int? id, String title, String content) async {
+    if (id == null) {
+      repository.insertNote(
+        MyNote(
+          title: title,
+          content: content,
+          color: _color,
+          timestamp: DateTime.now().microsecondsSinceEpoch,
+        ),
+      );
+    } else {
+      await repository.updateNote(
+        MyNote(
+            title: title,
+            content: content,
+            color: _color,
+            timestamp: DateTime.now().microsecondsSinceEpoch),
+      );
+    }
+  }
 }

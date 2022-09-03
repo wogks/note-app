@@ -28,7 +28,7 @@ extension StringExt on String {
 
   String take(int n) {
     String result = '';
-    result = this.substring(0, n);
+    result = substring(0, n);
     return result;
   }
 

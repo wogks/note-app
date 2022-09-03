@@ -10,7 +10,7 @@ void main() {
     await db.execute('CREATE TABLE note (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, color INTEGER, timestamp INTEGER)' );
 
     final noteDbHelper = NoteDbHelper(db);
-    await noteDbHelper.insertNote(MyNote(
+    await noteDbHelper.insertNote(const MyNote(
       title: 'test',
       content: 'test',
       color: 1,

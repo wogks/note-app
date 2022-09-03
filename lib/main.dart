@@ -5,8 +5,11 @@ import 'package:note_app/ui/colors.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  //플랫폼 채널의 위젯 바인딩을 보장한다
   WidgetsFlutterBinding.ensureInitialized();
+
   final providers = await getProviders();
+
   runApp(
     MultiProvider(
       providers: providers,

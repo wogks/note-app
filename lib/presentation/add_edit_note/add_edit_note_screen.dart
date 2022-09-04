@@ -7,6 +7,7 @@ import 'package:note_app/presentation/add_edit_note/add_edit_note_view_model.dar
 import 'package:note_app/ui/colors.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class AddEditNoteScreen extends StatefulWidget {
   MyNote? note;
   AddEditNoteScreen({Key? key, this.note}) : super(key: key);

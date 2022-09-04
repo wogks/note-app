@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/domain/model/my_note.dart';
 import 'package:note_app/presentation/add_edit_note/add_edit_note_screen.dart';
 import 'package:note_app/presentation/notes/notes_event.dart';
 import 'package:note_app/presentation/notes/notes_view_model.dart';
-import 'package:note_app/ui/colors.dart';
 import 'package:provider/provider.dart';
 
 import 'components/note_item.dart';
@@ -52,7 +50,20 @@ class NoteScreen extends StatelessWidget {
               .map(
                 (note) => NoteItem(
                   note: note,
-                  onDeleteTap: null,
+                  onDeleteTap: () {
+                    viewModel.onEvent(NotesEvent.deleteNote(note));
+
+                    final snackBar = SnackBar(
+                      content: const Text('노트가 삭제되었습니다.'),
+                      action: SnackBarAction(
+                        label: '취소',
+                        onPressed: () {
+                          viewModel.onEvent(const NotesEvent.restoreNote());
+                        },
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
                 ),
               )
               .toList(),

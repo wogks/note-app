@@ -1,15 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:note_app/domain/util/note_order.dart';
 import '../../domain/model/my_note.dart';
 
 part 'notes_state.freezed.dart';
 
-part 'notes_state.g.dart';
+
 
 @freezed
 class NoteState with _$NoteState {
   const factory NoteState({
     required List<MyNote> notes,
+    required NoteOrder noteOrder,
   }) = _NoteState;
 
-  factory NoteState.fromJson(Map<String, Object?> json) => _$NoteStateFromJson(json);
+  
 }

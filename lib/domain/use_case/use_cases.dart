@@ -3,7 +3,6 @@ import 'package:note_app/domain/use_case/delete_note_use_case.dart';
 import 'package:note_app/domain/use_case/get_note_use_case.dart';
 import 'package:note_app/domain/use_case/get_notes_use_case.dart';
 import 'package:note_app/domain/use_case/update_note_use_case.dart';
-import 'package:note_app/presentation/add_edit_note/add_edit_note_event.dart';
 
 class UseCases {
   final AddNoteUseCase addNote;

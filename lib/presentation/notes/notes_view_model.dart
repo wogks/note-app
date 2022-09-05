@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:note_app/domain/model/my_note.dart';
-import 'package:note_app/domain/repository/note_repository.dart';
-import 'package:note_app/domain/use_case/add_note_use_case.dart';
-import 'package:note_app/domain/use_case/delete_note_use_case.dart';
-import 'package:note_app/domain/use_case/get_notes_use_case.dart';
 import 'package:note_app/domain/use_case/use_cases.dart';
+import 'package:note_app/domain/util/note_order.dart';
+import 'package:note_app/domain/util/order_type.dart';
 import 'package:note_app/presentation/notes/notes_event.dart';
 import 'package:note_app/presentation/notes/notes_state.dart';
 
@@ -14,7 +12,7 @@ class NotesViewModel with ChangeNotifier {
 UseCases useCases;
   
 
-  NoteState _state = NoteState(notes: []);
+  NoteState _state = NoteState(notes: [], noteOrder: const NoteOrder.date(OrderType.descending()));
   NoteState get state => _state;
 
   MyNote? _recentlyDeletedNote;
@@ -32,7 +30,7 @@ UseCases useCases;
   }
 
   Future<void> _loadNotes() async {
-    List<MyNote> notes = await useCases.getNotes();
+    List<MyNote> notes = await useCases.getNotes(state.noteOrder);
     notes.sort((a, b) => -a.timestamp.compareTo(b.timestamp));
     _state = state.copyWith(notes: notes);
     notifyListeners();

@@ -9,10 +9,13 @@ import 'package:note_app/presentation/notes/notes_event.dart';
 import 'package:note_app/presentation/notes/notes_state.dart';
 
 class NotesViewModel with ChangeNotifier {
-UseCases useCases;
-  
+  UseCases useCases;
 
-  NoteState _state = NoteState(notes: [], noteOrder: const NoteOrder.date(OrderType.descending()));
+  NoteState _state = const NoteState(
+    notes: [],
+    noteOrder: NoteOrder.date(OrderType.descending()),
+    isOrderSectionVisible: false,
+  );
   NoteState get state => _state;
 
   MyNote? _recentlyDeletedNote;
@@ -31,6 +34,12 @@ UseCases useCases;
           noteOrder: noteOrder,
         );
         _loadNotes();
+      },
+      toggleOerderSection: () {
+        _state = state.copyWith(
+          isOrderSectionVisible: !state.isOrderSectionVisible,
+        );
+        notifyListeners();
       },
     );
   }

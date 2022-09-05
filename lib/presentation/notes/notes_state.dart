@@ -11,6 +11,7 @@ class NoteState with _$NoteState {
   const factory NoteState({
     required List<MyNote> notes,
     required NoteOrder noteOrder,
+    required bool isOrderSectionVisible,
   }) = _NoteState;
 
   

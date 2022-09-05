@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/domain/util/note_order.dart';
 import 'package:note_app/presentation/add_edit_note/add_edit_note_screen.dart';
+import 'package:note_app/presentation/notes/components/order_section.dart';
 import 'package:note_app/presentation/notes/notes_event.dart';
 import 'package:note_app/presentation/notes/notes_view_model.dart';
 import 'package:provider/provider.dart';
@@ -45,12 +47,18 @@ class NoteScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: state.notes
+        child: ListView(children: [
+          OrderSection(
+            noteOrder: state.noteOrder,
+            onOrderChanged: (noteOrder) {
+              viewModel.onEvent(NotesEvent.changeOrder(noteOrder));
+            },
+          ),
+          ...state.notes
               .map(
                 (note) => GestureDetector(
-                  onTap: () async{
-                   bool? isSaved = await Navigator.push(
+                  onTap: () async {
+                    bool? isSaved = await Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: ((context) => AddEditNoteScreen(
@@ -59,8 +67,7 @@ class NoteScreen extends StatelessWidget {
                       ),
                     );
                     if (isSaved != null && isSaved) {
-            viewModel.onEvent(
-              const NotesEvent.loadNotes());
+                      viewModel.onEvent(const NotesEvent.loadNotes());
                     }
                   },
                   child: NoteItem(
@@ -83,7 +90,7 @@ class NoteScreen extends StatelessWidget {
                 ),
               )
               .toList(),
-        ),
+        ]),
       ),
     );
   }

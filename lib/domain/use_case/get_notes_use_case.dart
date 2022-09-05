@@ -1,7 +1,6 @@
 import 'package:note_app/domain/model/my_note.dart';
 import 'package:note_app/domain/repository/note_repository.dart';
 import 'package:note_app/domain/util/note_order.dart';
-import 'package:note_app/domain/util/order_type.dart';
 
 class GetNotesUseCase {
   final NoteRepository repository;
@@ -43,7 +42,6 @@ class GetNotesUseCase {
       },
     );
 
-    
     return notes;
   }
 }

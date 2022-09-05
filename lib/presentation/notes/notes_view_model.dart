@@ -26,6 +26,12 @@ UseCases useCases;
       loadNotes: _loadNotes,
       deleteNote: _deleteNote,
       restoreNote: () {},
+      changeOrder: (NoteOrder noteOrder) {
+        _state = state.copyWith(
+          noteOrder: noteOrder,
+        );
+        _loadNotes();
+      },
     );
   }
 

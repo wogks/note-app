@@ -19,7 +19,7 @@ class NotesViewModel with ChangeNotifier {
   NoteState get state => _state;
 
   MyNote? _recentlyDeletedNote;
-
+ 
   NotesViewModel(this.useCases) {
     _loadNotes();
   }
@@ -46,7 +46,6 @@ class NotesViewModel with ChangeNotifier {
 
   Future<void> _loadNotes() async {
     List<MyNote> notes = await useCases.getNotes(state.noteOrder);
-    notes.sort((a, b) => -a.timestamp.compareTo(b.timestamp));
     _state = state.copyWith(notes: notes);
     notifyListeners();
   }
